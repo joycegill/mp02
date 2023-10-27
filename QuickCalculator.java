@@ -1,5 +1,4 @@
-package mp02;
-
+import BigFraction.*;
 import java.io.PrintWriter;
 
 /**
@@ -9,18 +8,20 @@ import java.io.PrintWriter;
  */
 
 public class QuickCalculator {
-    public static void main(String[] args) throws Exception {
-        BFCalculator calc = new BFCalculator();
-        PrintWriter pen = new PrintWriter(System.out, true);
+  public static void main(String[] args) throws Exception {
+    BFCalculator calc = new BFCalculator();
+    PrintWriter pen = new PrintWriter(System.out, true);
 
-        // Traverse through command line arguments
-        for (String exp : args) {
-            if (exp.contains("STORE")) {
-                calc.store(exp.charAt(6)); // store
-            }
-            else {
-                pen.println(exp + " = " + calc.evaluate(exp)); // evaluate
-            }
-        }
-    }
-}
+    // Traverse through command line arguments
+    for (String exp : args) {
+      // Store
+      if (exp.contains("STORE")) {
+        calc.store(exp.charAt(6)); 
+      } // if
+      // Evaluate
+      else {
+        pen.println(exp + " = " + calc.evaluate(exp)); // evaluate
+      } // else
+    } // for
+  } // main(String[])
+} // class QuickCalculator

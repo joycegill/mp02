@@ -1,4 +1,4 @@
-package mp02;
+package BigFraction;
 
 import java.util.*;
 import java.math.*;
@@ -27,7 +27,7 @@ public class BFCalculator {
     // If expression contains an incorrect number of arguments 
     if (input.length % 2 == 0) {
       System.err.println("Error: expression contains two numbers/registers in a row.");
-    } 
+    }  // if
 
     // The current result
     BigFraction current = getVal(input[0]);
@@ -54,32 +54,33 @@ public class BFCalculator {
         default:
           System.err.println("Error: invalid operation.");
       } // switch (input[i])
-    }
+    } // for
 
     // Return simplified result
     result = current.simplify(current); 
     return result;
   } // evaluate(String)
 
-    
+  // 
   public BigFraction getVal(String exp) {
     // If it is a register
     if ((Character.isLowerCase(exp.charAt(0)))) {
       return regDict.get(exp.charAt(0));
-    } 
+    } // if
     else {
       return new BigFraction(exp);
-    }
+    } // else
   } // getFraction(String)
 
+  // Store the last value computed in the named register.
   public void store(char register) {
     // If the register is not a valid char
     if (result == null || !(Character.isLowerCase(register))) {
       System.err.println("Error: invalid register.");
-    }
+    } // if
     // Otherwise store 
     else {
       regDict.put(register, result);
-    }
+    } // else
   } // store(char)
 } // class BFCalculator
