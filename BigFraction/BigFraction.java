@@ -15,27 +15,29 @@ public class BigFraction {
   // The denominator of the fraction. Must be non-negative.
   BigInteger denom;
 
-  // Build a new fraction with numerator num and denominator denom
+  /* Build a new fraction with numerator num and denominator denom */
   public BigFraction(BigInteger num, BigInteger denom) {
     this.num = num;
     this.denom = denom;
   } // BigFraction (BigInteger, BigInteger)
 
-  // Build a new fraction with numerator num and denominator denom
+  /* Build a new fraction with numerator num and denominator denom */
   public BigFraction(int num, int denom) {
     this.num = BigInteger.valueOf(num);
     this.denom = BigInteger.valueOf(denom);
   } // BigFraction(int, int)
 
-  // Build a new fraction with only numerator num
+  /* Build a new fraction with only numerator num */
   public BigFraction(BigInteger num) {
     this.num = num;
     this.denom = BigInteger.valueOf(1);
   } // BigFraction(BigInteger)
 
-  // Build a new fraction by parsing a string
+  /* Build a new fraction by parsing a string */
   public BigFraction(String str) throws IllegalStateException {
     String[] tempVar = str.split("/");
+
+    // If whole number
     if(tempVar.length == 1){
       this.num = BigInteger.valueOf(Integer.parseInt(tempVar[0]));
       this.denom = BigInteger.valueOf(1);
@@ -45,15 +47,18 @@ public class BigFraction {
       this.num = BigInteger.valueOf(Integer.parseInt(tempVar[0]));
     } catch (Exception e) {
       throw new IllegalStateException("Wrong fraction format!"); 
-    } // try..catch
+    } // try/catch
+
     Integer numer;
     Integer denomin;
+
+    // Parse the numerator and denominator
     try {
       numer = Integer.parseInt(tempVar[0]);
       denomin = Integer.parseInt(tempVar[1]);
     } catch (Exception e) {
       throw new IllegalStateException("There is a term that is not an integer");
-    } // try..catch
+    } // try/catch
 
     if (denomin == 0) {
       throw new IllegalStateException("0 divisor! Please try again.");
@@ -63,12 +68,12 @@ public class BigFraction {
     this.denom = BigInteger.valueOf(denomin);
   } // BigFraction(String)
 
-  // Express fraction as double
+  /* Express fraction as double */
   public double doubleValue() {
     return this.num.doubleValue() / this.denom.doubleValue();
   } // doubleValue()
 
-  // Calculate the greatest common denominator of two big integers
+  /* Calculate the greatest common denominator of two big integers */
   public BigInteger gcd(BigInteger num, BigInteger denom) {
     int i;
     int numI = num.intValue();
@@ -94,7 +99,7 @@ public class BigFraction {
     return BigInteger.valueOf(1);
   } // gcd (BigInteger, BigInteger)
 
-  // Simplify fractions
+  /* Simplify fractions */
   public BigFraction simplify(BigFraction simpMe) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
@@ -108,7 +113,7 @@ public class BigFraction {
     return new BigFraction(resultNumerator, resultDenominator);
   } // simplify(BigFraction)
 
-  // Add the fraction 'addMe' to this fraction
+  /* Add the fraction 'addMe' to this fraction */
   public BigFraction add(BigFraction addMe) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
@@ -122,7 +127,7 @@ public class BigFraction {
     return (simplify(result));
   } // add(BigFraction)
 
-  // Subtract the fraction 'subMe' to this fraction
+  /* Subtract the fraction 'subMe' to this fraction */
   public BigFraction subtract(BigFraction subMe) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
@@ -136,7 +141,7 @@ public class BigFraction {
     return (simplify(result));
   } // subtract(BigFraction)
 
-  // Multiply the fraction 'multiplyMe' to this fraction
+  /* Multiply the fraction 'multiplyMe' to this fraction */
   public BigFraction multiply(BigFraction multiplyMe) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
@@ -150,7 +155,7 @@ public class BigFraction {
     return (simplify(result));
   } // multiply(BigFraction)
 
-  // Divide the fraction 'divMe' to this fraction
+  /* Divide the fraction 'divMe' to this fraction */
   public BigFraction divide(BigFraction divMe) {
     BigInteger resultNumerator;
     BigInteger resultDenominator;
@@ -176,17 +181,17 @@ public class BigFraction {
     return new BigFraction(resultNumerator, this.denom);
   } // fractional()
 
-  // Return denominator
+  /* Return denominator */
   public BigInteger denominator() {
     return this.denom;
   } // denominator()
 
-  // Return numerator
+  /* Return numerator */
   public BigInteger numerator() {
     return this.num;
   } // numerator()
 
-  // Convert this fraction to a string for ease of printing
+  /* Convert this fraction to a string for ease of printing */
   public String toString() {
     // When result is zero
     if (this.num.equals(BigInteger.ZERO)) {
